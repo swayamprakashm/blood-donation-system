@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Blood Donation Management System</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<h1>Contact Us</h1>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('add_donor') }}">New Donor</a>
+        <a href="{{ url_for('view_donors') }}">Donors</a>
+        <a href="{{ url_for('about') }}">About Us</a>
+        <a href="{{ url_for('contact') }}" class="active">Contact Us</a>
+        <!-- Search bar in nav -->
+        <form method="get" action="{{ url_for('view_donors') }}" class="nav-search-form">
+            <input type="text" name="q" class="search-input" placeholder="Search donors...">
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+        
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                
+                <p>If you have questions, feedback, or want to get involved, reach out to us:</p>
+                
+                <ul>
+                    <li>📧 Email: <a href="mailto:support@blooddonation.com">support@blooddonation.com</a></li>
+                    <li>📞 Phone: +1 234 567 890</li>
+                    <li>📍 Address: 123 Donation Street, LifeCity</li>
+                </ul>
+            </div>
+            <img src="{{ url_for('static', filename='bdgif.gif') }}" alt="Blood Donation Logo" class="logo">
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send us a message</h2>
+                <form action="#" method="post">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="footer-container">
+        <p>&copy; {{ current_year }} Blood Donation Management System</p>
+        <div class="footer-links">
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

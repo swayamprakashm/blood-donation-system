@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor List - Blood Donation Management System</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Blood Donor List</h1>
+    
+    <!-- Navigation with Search -->
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('add_donor') }}">New Donor</a>
+        <a href="{{ url_for('view_donors') }}" class="active">Donors</a>
+        <a href="{{ url_for('about') }}">About Us</a>
+        <a href="{{ url_for('contact') }}">Contact Us</a>
+
+        <form method="get" action="{{ url_for('view_donors') }}" class="nav-search-form">
+            <input type="text" name="q" class="search-input" placeholder="Search donors..." value="{{ search_query or '' }}">
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </nav>
+
+    <!-- Donor Table -->
+    <div class="container">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Donor ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Blood Group</th>
+                        <th>Last Donation</th>
+                        <th>Contact</th>
+                        <th>City</th>
+                        <th>Health status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for donor in donors %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ donor['name'] }}</td>
+                        <td>{{ donor['age'] }}</td>
+                        <td>{{ donor['gender'] }}</td>
+                        <td><span class="blood-badge">{{ donor['blood_group'] }}</span></td>
+                        <td>{{ donor['last_donation'] or 'Never' }}</td>
+                        <td>{{ donor['contact'] }}</td>
+                        <td>{{ donor['city'] }}</td>
+                        <td>{{ donor['notes'] }}</td>
+                        <td>
+                            <a href="{{ url_for('delete_donor', donor_id=donor['id']) }}" 
+                               onclick="return confirm('Are you sure you want to delete this donor?');"
+                               class="delete-btn">Remove</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="10" style="text-align:center; color:gray; padding:20px;">
+                            🩸 No donors found.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <img src="{{ url_for('static', filename='dbd.gif') }}" alt="Blood Donation Logo" class="logo">
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; {{ current_year }} Blood Donation Management System</p>
+            <div class="footer-links">
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation Management System</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Blood Donation Management System</h1>
+
+</div>
+<nav>
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash">
+          {% for category, msg in messages %}
+            <li class="{{ category }}">{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</nav>
+
+ <!-- Short description / passage -->
+    <p class="intro-text">
+        <b>Welcome to our Blood Donation Management System.</b>
+        <br>Here you can log in if you already have an account, or sign up to become a part of our community of donors.<br> 
+        Help save lives by keeping our donor records up-to-date and easily accessible.
+    </p>
+
+<div class="forms-container">
+    <!-- Login Form -->
+    <form method="POST" action="{{ url_for('login') }}" class="donor-form">
+        <h3>Login</h3>
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Enter username" required>
+
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Enter password" required>
+
+        <button type="submit" class="btn">Login</button>
+    </form>
+
+    <!-- Signup Form -->
+    <form method="POST" action="{{ url_for('signup') }}" class="donor-form">
+        <h3>Signup</h3>
+        <label>Email:</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Choose username" required>
+
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Choose password" required>
+
+        <button type="submit" class="btn btn-secondary">Signup</button>
+    </form>
+</div>
+<footer class="footer">
+    <div class="footer-container">
+        <p>&copy; {{ current_year }} Blood Donation Management System</p>
+        <div class="footer-links">
+          <a href="{{ url_for('login') }}">Please Sign-up to Know More!</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
