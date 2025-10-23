@@ -120,3 +120,9 @@ Here are some ideas you may consider for future development:
 5. Open a Pull Request describing your changes.
 6. Please follow code style guidelines and include documentation where needed.
 
+## Developed by
+**M Swayam Prakash**
+**GitHub** [https://github.com/swayamprakashm](https://github.com/swayamprakashm)
+
+
+
